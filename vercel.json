@@ -1,0 +1,10 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "routes": [
+    { "src": "/blog/(.+)", "dest": "/blog-article.html" },
+    { "handle": "filesystem" },
+    { "src": "/404", "dest": "/404.html" },
+    { "src": "/(.*)", "status": 404, "dest": "/404.html" }
+  ]
+}
