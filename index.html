@@ -1,1 +1,280 @@
-{"cleanUrls":true,"routes":[{"src":"/blog/(.*)","status":404,"dest":"/404.html"},{"handle":"filesystem"},{"src":"/(.*)\.html","dest":"/$1"},{"src":"/(.+)","status":404,"dest":"/404.html"}]}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sobriety Journey - Recovery Aftercare Platform</title>
+<meta name="description" content="Structured aftercare platform supporting the transition from treatment to everyday life."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--teal:#1A6B6B;--teal-dark:#134f4f;--teal-light:#E8F4F4;--teal-mid:#C5E0E0;--warm-white:#f9f6f1;--cream:#f2ede4;--sand:#e8dfd0;--charcoal:#1c2b2b;--body-text:#3a4a4a;--muted:#6b8080;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--warm-white);color:var(--body-text);line-height:1.6;overflow-x:hidden;}
+.skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;}
+.skip-link:focus{position:fixed;left:1rem;top:1rem;width:auto;height:auto;background:var(--teal);color:#fff;padding:.5rem 1rem;border-radius:6px;text-decoration:none;font-weight:600;outline:3px solid #fff;outline-offset:2px;z-index:9999;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 5vw;display:flex;align-items:center;gap:2rem;background:rgba(249,246,241,.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(232,223,208,.6);}
+.nav-brand{display:flex;align-items:center;gap:.5rem;text-decoration:none;font-weight:700;color:var(--charcoal);font-size:1.05rem;}
+.nav-brand:focus{outline:3px solid var(--teal);outline-offset:3px;border-radius:4px;}
+.nav-logo{width:28px;height:28px;background:var(--teal);border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none;margin:0 auto;}
+.nav-links a{font-size:.875rem;font-weight:500;color:var(--body-text);text-decoration:none;}
+.nav-links a:hover{color:var(--teal);}
+.nav-links a:focus{outline:3px solid var(--teal);outline-offset:3px;border-radius:3px;color:var(--teal);}
+.nav-links a.active{color:var(--teal);font-weight:600;}
+.nav-actions{display:flex;align-items:center;gap:.75rem;flex-shrink:0;}
+.nav-contact{font-size:.875rem;font-weight:500;color:var(--muted);text-decoration:none;}
+.nav-contact:hover{color:var(--teal);}
+.nav-contact:focus{outline:3px solid var(--teal);outline-offset:3px;border-radius:3px;}
+.btn-primary{display:inline-flex;align-items:center;background:var(--teal);color:#fff;padding:.55rem 1.1rem;border-radius:8px;font-size:.875rem;font-weight:600;text-decoration:none;transition:background .2s;}
+.btn-primary:hover{background:var(--teal-dark);}
+.btn-primary:focus{outline:3px solid var(--teal);outline-offset:3px;}
+.btn-secondary{display:inline-flex;align-items:center;background:transparent;color:var(--teal);border:1.5px solid var(--teal);padding:.55rem 1.1rem;border-radius:8px;font-size:.875rem;font-weight:600;text-decoration:none;transition:all .2s;}
+.btn-secondary:hover{background:var(--teal-light);}
+.btn-secondary:focus{outline:3px solid var(--teal);outline-offset:3px;}
+.nav-hamburger{display:none;background:none;border:none;cursor:pointer;padding:.4rem;border-radius:6px;color:var(--charcoal);}
+.nav-hamburger:focus{outline:3px solid var(--teal);outline-offset:2px;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:currentColor;margin:5px 0;transition:all .25s;}
+.nav-mobile-cta{display:none;}
+.mobile-nav{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--warm-white);z-index:999;padding:5rem 5vw 2rem;flex-direction:column;gap:1.25rem;}
+.mobile-nav.open{display:flex;}
+.mobile-nav a{font-size:1.1rem;font-weight:500;color:var(--body-text);text-decoration:none;padding:.65rem 0;border-bottom:1px solid var(--sand);}
+.mobile-nav a:hover,.mobile-nav a:focus{color:var(--teal);}
+.mobile-nav a:focus{outline:3px solid var(--teal);outline-offset:3px;}
+.mobile-nav-close{position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--charcoal);padding:.5rem;border-radius:6px;}
+.mobile-nav-close:focus{outline:3px solid var(--teal);outline-offset:2px;}
+@media(max-width:900px){.nav-links,.nav-contact,.nav-actions>.btn-primary:not(.nav-mobile-cta){display:none;}.nav-hamburger{display:flex;flex-direction:column;justify-content:center;}.nav-mobile-cta{display:inline-flex;}}
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 5vw 5rem;}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;width:100%;}
+.section-label{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);background:var(--teal-light);padding:.3rem .75rem;border-radius:20px;margin-bottom:1.25rem;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4rem);line-height:1.15;color:var(--charcoal);font-weight:700;margin-bottom:1.5rem;}
+.hero h1 em{font-style:italic;color:var(--teal);}
+.hero-body{font-size:1.05rem;color:var(--muted);line-height:1.7;margin-bottom:.75rem;}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;}
+.hero-hint{font-size:.8rem;color:var(--muted);margin-top:.5rem;}
+.hero-right{display:flex;flex-direction:column;gap:1rem;}
+.hero-card{background:#fff;border-radius:14px;padding:1.25rem 1.5rem;box-shadow:0 2px 16px rgba(26,107,107,.1);border:1px solid var(--sand);}
+.hero-card-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:.4rem;}
+.hero-card-title{font-size:.9rem;font-weight:600;color:var(--charcoal);}
+.hero-card-detail{font-size:.8rem;color:var(--muted);}
+section{padding:5rem 5vw;}
+.section-header{text-align:center;margin-bottom:3rem;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--charcoal);margin-bottom:1rem;}
+.section-header p{color:var(--muted);max-width:640px;margin:0 auto;}
+.why-section{background:var(--cream);}
+.why-cols,.features-grid,.sa-grid,.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem;}
+.why-col,.feature-card,.sa-card{background:#fff;border-radius:14px;padding:1.75rem;border:1px solid var(--sand);}
+.why-col-icon{width:40px;height:40px;background:var(--teal-light);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;}
+.why-col h3,.feature-card h3,.sa-card h3{font-size:1rem;font-weight:700;color:var(--charcoal);margin-bottom:.5rem;}
+.why-col p,.feature-card p,.sa-card p{font-size:.875rem;color:var(--muted);line-height:1.6;}
+.feature-num{font-size:.75rem;font-weight:700;color:var(--teal);margin-bottom:.6rem;}
+.sa-section{background:var(--cream);}
+.sa-card-icon{font-size:1.4rem;margin-bottom:.75rem;}
+.context-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;max-width:1200px;margin:0 auto;}
+.context-quote{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--charcoal);line-height:1.65;font-style:italic;padding:1.5rem 1.75rem;background:#fff;border-left:4px solid var(--teal);border-radius:0 12px 12px 0;margin-bottom:1.5rem;}
+.audience-links{display:flex;flex-direction:column;gap:1rem;}
+.audience-cta{display:flex;flex-direction:column;gap:.25rem;padding:1.25rem 1.5rem;background:#fff;border-radius:12px;border:1px solid var(--sand);text-decoration:none;transition:border-color .2s;}
+.audience-cta:hover{border-color:var(--teal);}
+.audience-cta:focus{outline:3px solid var(--teal);outline-offset:3px;border-radius:12px;}
+.audience-cta .label{font-size:.95rem;font-weight:700;color:var(--charcoal);}
+.audience-cta .sub{font-size:.825rem;color:var(--teal);}
+.pricing-section{background:var(--cream);}
+.pricing-grid{max-width:900px;margin:2.5rem auto 0;}
+.pricing-card{background:#fff;border-radius:16px;padding:2rem;border:1px solid var(--sand);position:relative;}
+.pricing-card.featured{border-color:var(--teal);box-shadow:0 4px 24px rgba(26,107,107,.15);}
+.pricing-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--teal);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:20px;}
+.pricing-card h3{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.6rem;}
+.pricing-price{font-size:1.65rem;font-weight:700;color:var(--charcoal);margin-bottom:.4rem;}
+.pricing-price span{font-size:.875rem;font-weight:400;color:var(--muted);}
+.pricing-desc{font-size:.875rem;color:var(--muted);line-height:1.6;}
+.cta-section{background:var(--teal-dark);text-align:center;color:#fff;}
+.cta-section h2{font-family:'Playfair Display',serif;font-size:clamp(1.75rem,3.5vw,2.5rem);margin-bottom:1rem;}
+.cta-section p{color:var(--teal-mid);max-width:500px;margin:0 auto 2rem;}
+.cta-actions{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;}
+.btn-white{background:#fff;color:var(--teal-dark);padding:.75rem 1.75rem;border-radius:10px;font-weight:700;font-size:.95rem;text-decoration:none;}
+.btn-white:hover{background:var(--teal-light);}
+.btn-white:focus{outline:3px solid #fff;outline-offset:3px;}
+.btn-outline-white{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5);padding:.75rem 1.75rem;border-radius:10px;font-weight:600;font-size:.95rem;text-decoration:none;}
+.btn-outline-white:hover{border-color:#fff;}
+.btn-outline-white:focus{outline:3px solid #fff;outline-offset:3px;}
+footer{background:var(--charcoal);padding:3rem 5vw 1.5rem;}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.footer-brand{font-size:1rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:.5rem;}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap;}
+.footer-links a{font-size:.825rem;color:rgba(255,255,255,.6);text-decoration:none;}
+.footer-links a:hover{color:#fff;}
+.footer-links a:focus{outline:3px solid var(--teal-mid);outline-offset:3px;border-radius:3px;}
+.footer-bottom{max-width:1200px;margin:1.25rem auto 0;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;}
+.footer-copy{font-size:.8rem;color:rgba(255,255,255,.4);}
+.footer-cta{font-size:.85rem;background:var(--teal);color:#fff;padding:.45rem .9rem;border-radius:8px;text-decoration:none;font-weight:600;}
+.footer-cta:hover{background:var(--teal-dark);}
+.footer-cta:focus{outline:3px solid var(--teal-mid);outline-offset:3px;}
+@media(max-width:900px){.hero-inner,.context-inner{grid-template-columns:1fr;}.hero-right{display:none;}.why-cols,.features-grid,.sa-grid,.pricing-grid{grid-template-columns:1fr;}}
+@media(max-width:600px){.hero{padding:7rem 5vw 4rem;}.hero h1{font-size:2.25rem;}}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<div class="mobile-nav" id="mobileNav" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">&times;</button>
+  <a href="/" class="active">Home</a>
+  <a href="/for-recovery">For People in Recovery</a>
+  <a href="/for-therapists">For Therapists</a>
+  <a href="/for-providers">For Treatment Providers</a>
+  <a href="/blog">Blog</a>
+  <a href="/demo">Request a Demo</a>
+  <a href="mailto:info@sobrietyjourney.org">Contact Us</a>
+  <a href="https://app.sobrietyjourney.org" target="_blank" rel="noopener noreferrer" class="btn-primary" style="margin-top:1rem;justify-content:center;">Access Platform</a>
+</div>
+<nav aria-label="Main navigation">
+  <a href="/" class="nav-brand">
+    <div class="nav-logo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/><circle cx="12" cy="10" r="3"/></svg></div>
+    Sobriety Journey
+  </a>
+  <ul class="nav-links">
+    <li><a href="/" class="active">Home</a></li>
+    <li><a href="/for-recovery">For People in Recovery</a></li>
+    <li><a href="/for-therapists">For Therapists</a></li>
+    <li><a href="/for-providers">For Treatment Providers</a></li>
+    <li><a href="/blog">Blog</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="mailto:info@sobrietyjourney.org" class="nav-contact">Contact Us</a>
+    <a href="https://app.sobrietyjourney.org" target="_blank" rel="noopener noreferrer" class="btn-primary">Access Platform &rarr;</a>
+    <a href="https://app.sobrietyjourney.org" target="_blank" rel="noopener noreferrer" class="btn-primary nav-mobile-cta">Access Platform &rarr;</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<main id="main-content">
+<section id="hero" class="hero" aria-labelledby="hero-heading">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <span class="section-label">Structured Aftercare &middot; Built in South Africa</span>
+      <h1 id="hero-heading">Recovery does not end <br>after <em>treatment</em>.</h1>
+      <p class="hero-body">Sobriety Journey supports the critical transition from treatment to everyday life by helping people maintain stability, structure, and connection throughout their recovery journey.</p>
+      <p class="hero-body">The platform helps individuals rebuild healthy routines while giving therapists and treatment providers clearer visibility into recovery engagement during structured aftercare.</p>
+      <div class="hero-actions">
+        <a href="https://app.sobrietyjourney.org" target="_blank" rel="noopener noreferrer" class="btn-primary">Access the Platform &rarr;</a>
+        <a href="/blog" class="btn-secondary">Read the Blog &rarr;</a>
+        <a href="https://app.sobrietyjourney.org/home" target="_blank" rel="noopener noreferrer" class="btn-secondary">&#8595; Get the App</a>
+      </div>
+      <p class="hero-hint">Opens on your phone &mdash; tap Add to Home Screen to install</p>
+    </div>
+    <div class="hero-right" aria-hidden="true">
+      <div class="hero-card"><div class="hero-card-label">Check-In</div><div class="hero-card-title">Day 47 &middot; Complete</div><div class="hero-card-detail">Mood stable &middot; Sleep 7h &middot; No cravings</div></div>
+      <div class="hero-card"><div class="hero-card-label">Patient Summary</div><div class="hero-card-title">James M. &mdash; stable engagement</div></div>
+      <div class="hero-card"><div class="hero-card-label">Programme Overview</div><div class="hero-card-title">23 patients &middot; active aftercare</div></div>
+    </div>
+  </div>
+</section>
+<section id="why" class="why-section" aria-labelledby="why-heading">
+  <div style="max-width:1200px;margin:0 auto;">
+  <div class="section-header">
+    <span class="section-label">Why Sobriety Journey</span>
+    <h2 id="why-heading">The critical months after treatment are when recovery habits must become part of everyday life.</h2>
+    <p>For many people, the most difficult stage of recovery begins after treatment ends. Patients leave structured environments and return to everyday life where stress, routine disruption, and isolation can increase relapse risk.</p>
+  </div>
+  <div class="why-cols">
+    <div class="why-col"><div class="why-col-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><h3>The individual rebuilding stability</h3><p>Daily structure, pattern awareness, and support tools that accompany recovery in everyday life.</p></div>
+    <div class="why-col"><div class="why-col-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><h3>The therapist supporting the journey</h3><p>Structured behavioural insight helps clinicians support patients more effectively between sessions.</p></div>
+    <div class="why-col"><div class="why-col-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><h3>The treatment provider maintaining continuity</h3><p>Programme visibility beyond discharge helps providers understand and support recovery outcomes.</p></div>
+  </div>
+  </div>
+</section>
+<section id="features" aria-labelledby="features-heading" style="background:var(--warm-white);">
+  <div style="max-width:1200px;margin:0 auto;">
+  <div class="section-header">
+    <span class="section-label">What the Platform Provides</span>
+    <h2 id="features-heading">What the Platform Provides</h2>
+    <p>A set of structured tools that support recovery engagement across all three parts of the aftercare ecosystem.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card"><div class="feature-num">01</div><h3>Daily Recovery Check-Ins</h3><p>Simple check-ins help individuals monitor mood, cravings, sleep, and routine stability.</p></div>
+    <div class="feature-card"><div class="feature-num">02</div><h3>Personal Recovery Journal</h3><p>Private journaling supports reflection and helps identify triggers or behavioural patterns.</p></div>
+    <div class="feature-card"><div class="feature-num">03</div><h3>Routine Builder</h3><p>Users rebuild healthy routines that support recovery stability over time.</p></div>
+    <div class="feature-card"><div class="feature-num">04</div><h3>Trigger Awareness</h3><p>Patterns such as sleep disruption, stress, or isolation can be recognised earlier.</p></div>
+    <div class="feature-card"><div class="feature-num">05</div><h3>Crisis Support Tools</h3><p>Grounding exercises and quick access to trusted support contacts help individuals through vulnerable moments.</p></div>
+    <div class="feature-card"><div class="feature-num">06</div><h3>Therapist &amp; Programme Visibility</h3><p>Clinicians and treatment providers gain structured insight into recovery engagement.</p></div>
+  </div>
+  </div>
+</section>
+<section id="context" aria-labelledby="context-heading" style="background:var(--cream);">
+  <div class="context-inner">
+    <div>
+      <span class="section-label">Built for Real Recovery Environments</span>
+      <h2 id="context-heading" style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.5vw,2rem);color:var(--charcoal);margin-bottom:1rem;">Designed in the context of real treatment and counselling environments.</h2>
+      <p style="color:var(--muted);line-height:1.7;margin-bottom:1.5rem;">Sobriety Journey was designed in the context of real treatment and counselling environments where structured aftercare is essential.</p>
+      <blockquote class="context-quote">&#8220;Recovery is a lifelong journey. Sobriety Journey helps treatment providers support individuals during the critical transition from treatment to everyday life while allowing individuals to remain connected to recovery tools for as long as they choose.&#8221;</blockquote>
+    </div>
+    <div class="audience-links">
+      <a href="/for-recovery" class="audience-cta"><span class="label">For People in Recovery</span><span class="sub">Support for your everyday journey &rarr;</span></a>
+      <a href="/for-therapists" class="audience-cta"><span class="label">For Therapists</span><span class="sub">Tools for the space between sessions &rarr;</span></a>
+      <a href="/for-providers" class="audience-cta"><span class="label">For Treatment Providers</span><span class="sub">Extending continuity of care &rarr;</span></a>
+    </div>
+  </div>
+</section>
+<section id="sa" class="sa-section" aria-labelledby="sa-heading">
+  <div style="max-width:1200px;margin:0 auto;">
+  <div class="section-header">
+    <span class="section-label">South African Context</span>
+    <h2 id="sa-heading">Built for the South African recovery environment.</h2>
+    <p>Designed with local clinical expertise and regulatory requirements in mind.</p>
+  </div>
+  <div class="sa-grid">
+    <div class="sa-card"><div class="sa-card-icon" aria-hidden="true">&#128274;</div><h3>POPIA Compliant</h3><p>Each centre's data is fully isolated. No data crosses tenant boundaries. Data is exportable on request.</p></div>
+    <div class="sa-card"><div class="sa-card-icon" aria-hidden="true">&#127807;</div><h3>40 Years of SA Rehabilitation Experience</h3><p>Built in collaboration with experienced rehabilitation professionals. Clinically grounded, not assumption-driven.</p></div>
+    <div class="sa-card"><div class="sa-card-icon" aria-hidden="true">&#128241;</div><h3>Designed for SA Connectivity</h3><p>Notification and communication features designed for the South African digital environment.</p></div>
+  </div>
+  </div>
+</section>
+<section id="pricing" class="pricing-section" aria-labelledby="pricing-heading">
+  <div style="max-width:1000px;margin:0 auto;">
+  <div class="section-header">
+    <span class="section-label">For Treatment Providers</span>
+    <h2 id="pricing-heading">Affordable, scalable licensing for South African facilities.</h2>
+    <p>Sobriety Journey is currently in Phase 1 at our Pretoria facility. As we open to other centres, pricing is designed for the SA context.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card"><h3>Base Licence</h3><div class="pricing-price">R1,500&#8211;3,000 <span>/month</span></div><p class="pricing-desc">Core platform access, therapist dashboard, and patient app for your treatment centre.</p></div>
+    <div class="pricing-card featured"><span class="pricing-badge">Scalable</span><h3>Per Patient</h3><div class="pricing-price">R50&#8211;100 <span>/patient/month</span></div><p class="pricing-desc">Flexible per-patient pricing that scales with your active aftercare caseload.</p></div>
+    <div class="pricing-card"><h3>Onboarding</h3><div class="pricing-price">R2,500 <span>once-off</span></div><p class="pricing-desc">Setup, staff training, and data migration support to get your centre fully operational.</p></div>
+  </div>
+  </div>
+</section>
+<section class="cta-section" aria-labelledby="cta-heading">
+  <h2 id="cta-heading">Ready to support structured aftercare?</h2>
+  <p>Join the rehabilitation centres across South Africa building a better aftercare standard.</p>
+  <div class="cta-actions">
+    <a href="https://app.sobrietyjourney.org" target="_blank" rel="noopener noreferrer" class="btn-white">Access the Platform &rarr;</a>
+    <a href="mailto:info@sobrietyjourney.org" class="btn-outline-white">Contact Us</a>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal-mid)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/><circle cx="12" cy="10" r="3"/></svg>Sobriety Journey</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="/">Home</a><a href="/for-recovery">For People in Recovery</a><a href="/for-therapists">For Therapists</a><a href="/for-providers">For Treatment Providers</a><a href="/blog">Blog</a><a href="/demo">Request a Demo</a><a href="mailto:info@sobrietyjourney.org">Contact</a>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2026 Sobriety Journey. All rights reserved.</span>
+    <a href="https://app.sobrietyjourney.org" target="_blank" rel="noopener noreferrer" class="footer-cta">Access the Platform &rarr;</a>
+  </div>
+</footer>
+<script>
+(function(){
+  var btn=document.getElementById('navHamburger');
+  var nav=document.getElementById('mobileNav');
+  var close=document.getElementById('mobileNavClose');
+  if(!btn||!nav)return;
+  function open(){nav.classList.add('open');btn.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';close.focus();}
+  function closeNav(){nav.classList.remove('open');btn.setAttribute('aria-expanded','false');document.body.style.overflow='';btn.focus();}
+  btn.addEventListener('click',open);
+  close.addEventListener('click',closeNav);
+  nav.addEventListener('keydown',function(e){if(e.key==='Escape')closeNav();});
+})();
+</script>
+</body>
+</html>
