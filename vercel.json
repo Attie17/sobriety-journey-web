@@ -2,6 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "routes": [
+    { "src": "/demo", "dest": "/demo.html" },
     { "src": "/blog/(.+)", "dest": "/blog-article.html" },
     { "handle": "filesystem" },
     { "src": "/404", "dest": "/404.html" },
